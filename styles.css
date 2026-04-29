@@ -215,7 +215,7 @@ body[data-theme="light"] .theme-icon-moon {
   background:
     linear-gradient(90deg, rgba(23, 17, 22, 0.1) 0%, rgba(23, 17, 22, 0.3) 42%, rgba(23, 17, 22, 0.78) 100%),
     linear-gradient(180deg, rgba(23, 17, 22, 0.08), rgba(23, 17, 22, 0.24)),
-    url("assets/reenz-bridal-wide-clean.jpg") center / cover no-repeat fixed;
+    url("assets/reenz-bridal-hero-upscaled.png") center / cover no-repeat fixed;
 }
 
 .hero-content {
