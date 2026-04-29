@@ -252,7 +252,18 @@ h1 {
   max-width: 760px;
   margin-bottom: 24px;
   font-size: clamp(4.4rem, 14vw, 11rem);
-  letter-spacing: 0;
+  letter-spacing: -0.03em;
+  background: linear-gradient(to right, #fff 20%, var(--gold) 50%, #fff 80%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 5s linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
 }
 
 h2 {
