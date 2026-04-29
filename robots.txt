@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://reenz.in/sitemap.xml

@@ -42,7 +42,7 @@ if (toggle && header) {
 }
 
 // Scroll Reveal Animations
-const revealElements = document.querySelectorAll('.service-card, .image-story figure, .story-media, .carousel-wrapper, .location-card, .section-heading, .intro-copy, .brows-text');
+const revealElements = document.querySelectorAll('.menu-card, .image-story figure, .story-media, .carousel-wrapper, .location-card, .section-heading, .intro-copy, .brows-text');
 
 const revealOptions = {
   threshold: 0.1,
@@ -63,7 +63,7 @@ revealElements.forEach((el, index) => {
   el.classList.add('reveal');
   
   // Add a slight stagger for items in a grid
-  if (el.closest('.service-grid') || el.closest('.quote-grid') || el.closest('.location-card') || el.closest('.image-story')) {
+  if (el.closest('.menu-grid') || el.closest('.quote-grid') || el.closest('.location-card') || el.closest('.image-story')) {
     el.style.transitionDelay = `${(index % 3) * 0.15}s`;
   }
   
@@ -79,7 +79,7 @@ if (cursor) {
     cursor.style.top = e.clientY + 'px';
   });
 
-  const hoverElements = document.querySelectorAll('a, button, input, .service-card, .location-card, .image-story figure, .carousel-slide');
+  const hoverElements = document.querySelectorAll('a, button, input, .menu-card, .location-card, .image-story figure, .carousel-slide');
   
   hoverElements.forEach(el => {
     el.addEventListener('mouseenter', () => {
