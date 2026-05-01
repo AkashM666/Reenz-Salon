@@ -1,3 +1,4 @@
+/* ─── Theme ─────────────────────────────────────────────── */
 const toggle = document.querySelector("[data-nav-toggle]");
 const header = document.querySelector("[data-header]");
 const navItems = document.querySelectorAll("[data-nav] a");
@@ -25,6 +26,7 @@ if (themeToggle) {
   });
 }
 
+/* ─── Mobile Nav ─────────────────────────────────────────── */
 if (toggle && header) {
   toggle.addEventListener("click", () => {
     const isOpen = header.classList.toggle("nav-open");
@@ -41,73 +43,106 @@ if (toggle && header) {
   });
 }
 
-// Scroll Reveal Animations
-const revealElements = document.querySelectorAll('.menu-card, .image-story figure, .story-media, .carousel-wrapper, .location-card, .section-heading, .intro-copy, .brows-text');
+/* ─── Scroll: Header shadow + Back-to-top ───────────────── */
+const backToTop = document.querySelector(".back-to-top");
+
+window.addEventListener("scroll", () => {
+  const scrolled = window.scrollY > 60;
+  header?.classList.toggle("is-scrolled", scrolled);
+
+  if (backToTop) {
+    backToTop.classList.toggle("is-visible", window.scrollY > 500);
+  }
+}, { passive: true });
+
+/* ─── Scroll Reveal Animations ───────────────────────────── */
+const revealElements = document.querySelectorAll(
+  ".menu-card, .image-story figure, .story-media, .carousel-wrapper, .location-card, .section-heading, .intro-copy, .brows-text"
+);
 
 const revealOptions = {
   threshold: 0.1,
   rootMargin: "0px 0px -50px 0px"
 };
 
-const revealObserver = new IntersectionObserver(function(entries, observer) {
+const revealObserver = new IntersectionObserver((entries, observer) => {
   entries.forEach(entry => {
-    if (!entry.isIntersecting) {
-      return;
-    }
-    entry.target.classList.add('active');
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add("active");
     observer.unobserve(entry.target);
   });
 }, revealOptions);
 
 revealElements.forEach((el, index) => {
-  el.classList.add('reveal');
-  
-  // Add a slight stagger for items in a grid
-  if (el.closest('.menu-grid') || el.closest('.quote-grid') || el.closest('.location-card') || el.closest('.image-story')) {
+  el.classList.add("reveal");
+
+  // Stagger items in a grid
+  if (
+    el.closest(".menu-grid") ||
+    el.closest(".quote-grid") ||
+    el.closest(".location-card") ||
+    el.closest(".image-story")
+  ) {
     el.style.transitionDelay = `${(index % 3) * 0.15}s`;
   }
-  
+
   revealObserver.observe(el);
 });
 
-// Custom Cursor
-const cursor = document.querySelector('.custom-cursor');
+/* ─── Custom Cursor (pointer devices only) ───────────────── */
+const cursor = document.querySelector(".custom-cursor");
 
-if (cursor) {
-  document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
+if (cursor && window.matchMedia("(pointer: fine)").matches) {
+  document.addEventListener("mousemove", (e) => {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
   });
 
-  const hoverElements = document.querySelectorAll('a, button, input, .menu-card, .location-card, .image-story figure, .carousel-slide');
-  
+  const hoverElements = document.querySelectorAll(
+    "a, button, input, .menu-card, .location-card, .image-story figure, .carousel-slide"
+  );
+
   hoverElements.forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.classList.add('hover');
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.classList.remove('hover');
-    });
+    el.addEventListener("mouseenter", () => cursor.classList.add("hover"));
+    el.addEventListener("mouseleave", () => cursor.classList.remove("hover"));
   });
+} else if (cursor) {
+  cursor.style.display = "none";
 }
 
-// Modal Logic
-const modalOpens = document.querySelectorAll('[data-modal-open]');
-const modalCloses = document.querySelectorAll('[data-modal-close]');
+/* ─── Modal Logic (with focus trapping + Escape key) ─────── */
+const modalOpens = document.querySelectorAll("[data-modal-open]");
+const modalCloses = document.querySelectorAll("[data-modal-close]");
+
+// Focusable selectors for trap
+const FOCUSABLE = 'a[href], button:not([disabled]), input, textarea, select, details, [tabindex]:not([tabindex="-1"])';
+
+function openModal(modal) {
+  if (!modal) return;
+  modal.classList.add("is-open");
+  modal.removeAttribute("aria-hidden");
+  document.body.style.overflow = "hidden";
+
+  // Focus first focusable element inside modal
+  const firstFocusable = modal.querySelector(FOCUSABLE);
+  firstFocusable?.focus();
+}
+
+function closeModal(modal) {
+  if (!modal) return;
+  modal.classList.remove("is-open");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
 
 modalOpens.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const modalId = btn.getAttribute('data-modal-open');
-    const modal = document.getElementById(modalId);
-    if (modal) {
-      modal.classList.add('is-open');
-      document.body.style.overflow = 'hidden'; // Prevent scrolling
-    }
+  btn.addEventListener("click", () => {
+    const modal = document.getElementById(btn.getAttribute("data-modal-open"));
+    openModal(modal);
   });
-  
-  // Also open on Enter key if focused
-  btn.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
+
+  btn.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       btn.click();
     }
@@ -115,62 +150,86 @@ modalOpens.forEach(btn => {
 });
 
 modalCloses.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const modal = btn.closest('.article-modal');
-    if (modal) {
-      modal.classList.remove('is-open');
-      document.body.style.overflow = ''; // Restore scrolling
-    }
+  btn.addEventListener("click", () => {
+    closeModal(btn.closest(".article-modal"));
   });
 });
 
-// Autoscrolling Carousel (Smooth & Constant)
-const carouselTrack = document.querySelector('.carousel-track');
+// Escape key closes active modal
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    const openModal = document.querySelector(".article-modal.is-open");
+    if (openModal) closeModal(openModal);
+  }
+});
+
+// Focus trap inside open modal
+document.addEventListener("keydown", (e) => {
+  if (e.key !== "Tab") return;
+  const activeModal = document.querySelector(".article-modal.is-open");
+  if (!activeModal) return;
+
+  const focusableEls = Array.from(activeModal.querySelectorAll(FOCUSABLE));
+  if (!focusableEls.length) return;
+
+  const first = focusableEls[0];
+  const last = focusableEls[focusableEls.length - 1];
+
+  if (e.shiftKey) {
+    if (document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    }
+  } else {
+    if (document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+});
+
+/* ─── Autoscrolling Testimonials Carousel ────────────────── */
+const carouselTrack = document.querySelector(".carousel-track");
 
 if (carouselTrack) {
-  // Duplicate content carefully without destroying original nodes
   const originalSlides = Array.from(carouselTrack.children);
   originalSlides.forEach(slide => {
     const clone = slide.cloneNode(true);
-    // Make sure cloned slides are visible if they had reveal classes
-    clone.style.opacity = '1';
-    clone.style.transform = 'translateY(0)';
+    clone.style.opacity = "1";
+    clone.style.transform = "translateY(0)";
     carouselTrack.appendChild(clone);
   });
-  
-  // Make sure original slides are visible too just in case
+
   originalSlides.forEach(slide => {
-    slide.style.opacity = '1';
-    slide.style.transform = 'translateY(0)';
+    slide.style.opacity = "1";
+    slide.style.transform = "translateY(0)";
   });
-  
-  // Disable CSS scroll snapping and smooth behavior so continuous scroll isn't jerky or frozen
-  carouselTrack.style.scrollSnapType = 'none';
-  carouselTrack.style.scrollBehavior = 'auto';
-  const slides = carouselTrack.querySelectorAll('.carousel-slide');
-  slides.forEach(slide => slide.style.scrollSnapAlign = 'none');
-  
+
+  carouselTrack.style.scrollSnapType = "none";
+  carouselTrack.style.scrollBehavior = "auto";
+  carouselTrack.querySelectorAll(".carousel-slide").forEach(
+    slide => (slide.style.scrollSnapAlign = "none")
+  );
+
   let isHovered = false;
   let currentScroll = 0;
-  const scrollSpeed = 0.6; // Adjust this value to change speed
-  
-  carouselTrack.addEventListener('mouseenter', () => isHovered = true);
-  carouselTrack.addEventListener('mouseleave', () => isHovered = false);
-  
+  const scrollSpeed = 0.6;
+
+  carouselTrack.addEventListener("mouseenter", () => (isHovered = true));
+  carouselTrack.addEventListener("mouseleave", () => (isHovered = false));
+
   function smoothScroll() {
     if (!isHovered) {
       currentScroll += scrollSpeed;
-      // If we've scrolled past the first set of items, seamlessly jump back to the start
       if (currentScroll >= carouselTrack.scrollWidth / 2) {
         currentScroll = 0;
       }
       carouselTrack.scrollLeft = currentScroll;
     } else {
-      // Keep track of manual scrolling when hovered
       currentScroll = carouselTrack.scrollLeft;
     }
     requestAnimationFrame(smoothScroll);
   }
-  
+
   requestAnimationFrame(smoothScroll);
 }
