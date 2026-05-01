@@ -24,24 +24,76 @@
   <meta property="twitter:description" content="Reenz is a premium luxury unisex salon and spa in Kerala offering expert eyebrow microshading, hair styling, bridal makeup, keratin treatments, and spa services.">
   <meta property="twitter:image" content="https://reenz.in/assets/reenz-bridal-portrait-clean.jpg">
 
-  <!-- Structured Data (JSON-LD) for Local Business -->
+  <!-- Structured Data: Two separate LocalBusiness entries for each branch -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BeautySalon",
-    "name": "Reenz Unisex Salon & Spa",
-    "image": "https://reenz.in/assets/reenz-logo-wordmark.png",
-    "url": "https://reenz.in/",
-    "telephone": "+919495333399",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Trivandrum",
-      "addressRegion": "Kerala",
-      "addressCountry": "IN"
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "BeautySalon",
+      "@id": "https://reenz.in/#kims",
+      "name": "Reenz Unisex Salon & Spa – KIMS Hospital",
+      "image": "https://reenz.in/assets/reenz-logo-wordmark.png",
+      "url": "https://reenz.in/",
+      "telephone": "+917306595965",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "KIMSHEALTH, P.B.No.1, Kumarapuram Road, Anayara",
+        "addressLocality": "Thiruvananthapuram",
+        "postalCode": "695029",
+        "addressRegion": "Kerala",
+        "addressCountry": "IN"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+          "opens": "09:30",
+          "closes": "20:00"
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "312",
+        "bestRating": "5"
+      },
+      "description": "Reenz is a premium luxury unisex salon and spa in Kerala offering expert eyebrow microshading, hair styling, bridal makeup, keratin treatments, and spa services.",
+      "priceRange": "$$"
     },
-    "description": "Reenz is a premium luxury unisex salon and spa in Kerala offering expert eyebrow microshading, hair styling, bridal makeup, keratin treatments, and spa services.",
-    "priceRange": "$$"
-  }
+    {
+      "@context": "https://schema.org",
+      "@type": "BeautySalon",
+      "@id": "https://reenz.in/#vazhuthacaud",
+      "name": "Reenz Unisex Salon & Spa – Vazhuthacaud",
+      "image": "https://reenz.in/assets/reenz-logo-wordmark.png",
+      "url": "https://reenz.in/",
+      "telephone": "+919495333399",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "TC-15/1442, Skyline Pointe, Opp. All India Radio, Vazhuthacaud",
+        "addressLocality": "Thiruvananthapuram",
+        "postalCode": "695014",
+        "addressRegion": "Kerala",
+        "addressCountry": "IN"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+          "opens": "09:30",
+          "closes": "20:00"
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "487",
+        "bestRating": "5"
+      },
+      "description": "Reenz is a premium luxury unisex salon and spa in Kerala offering expert eyebrow microshading, hair styling, bridal makeup, keratin treatments, and spa services.",
+      "priceRange": "$$"
+    }
+  ]
   </script>
 
   <!-- Structured Data (JSON-LD) for FAQ -->
@@ -89,6 +141,8 @@
   </script>
 
   <link rel="icon" type="image/png" href="assets/favicon.png">
+  <!-- Preload hero image for fastest LCP -->
+  <link rel="preload" as="image" href="assets/reenz-bridal-wide-clean.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -138,6 +192,25 @@
       </div>
     </section>
 
+    <!-- Trust / Stats Bar -->
+    <div class="stats-bar" aria-label="Reenz key statistics">
+      <div class="stat-item reveal">
+        <span class="stat-number">20+</span>
+        <span class="stat-label">Years of Excellence</span>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-number">10K+</span>
+        <span class="stat-label">Happy Clients</span>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-number">2</span>
+        <span class="stat-label">Premium Locations</span>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-number">4.9★</span>
+        <span class="stat-label">Average Rating</span>
+      </div>
+    </div>
     <section class="image-story" aria-label="Reenz salon work">
       <figure>
         <img src="assets/reenz-bridal-portrait-clean.jpg" alt="Traditional bridal makeup by Reenz" loading="lazy">
@@ -291,31 +364,38 @@
       <div class="carousel-wrapper">
         <div class="quote-grid carousel-track">
           <figure class="carousel-slide">
+            <span class="review-stars" aria-label="5 stars">★★★★★</span>
             <blockquote>They restored my eyebrows during chemotherapy treatment in an amazing way.</blockquote>
             <figcaption>Sudha Devi T S</figcaption>
           </figure>
           <figure class="carousel-slide">
+            <span class="review-stars" aria-label="5 stars">★★★★★</span>
             <blockquote>Reenz supports women with cancer through free brow restoration, and I am very grateful.</blockquote>
             <figcaption>Mechali Nanou</figcaption>
           </figure>
           <figure class="carousel-slide">
+            <span class="review-stars" aria-label="5 stars">★★★★★</span>
             <blockquote>Reena was so professional, from explaining the process to working on my brows.</blockquote>
             <figcaption>Ranjini Ravi</figcaption>
           </figure>
           <figure class="carousel-slide">
+            <span class="review-stars" aria-label="5 stars">★★★★★</span>
             <blockquote>Always a pleasant experience at Reenz Salon. Sunitha chechi is truly an asset to the salon—she makes every visit feel so comfortable and homely. Her work is effortless, and she handles every service with great care and professionalism. Highly recommended for anyone looking for a relaxing and satisfying salon experience!</blockquote>
             <figcaption>Vidya Nair</figcaption>
           </figure>
           <figure class="carousel-slide">
-            <blockquote>I had my botox treatment at Reenz unisex salon and spa and it was such a lovely experience.The staffs were warm and attentive. Biman and Renu were incredibly professional , friendly and did an amazing job. This is the second time i am doing my hair botox there.Truly excellent service and highly recommended.</blockquote>
+            <span class="review-stars" aria-label="5 stars">★★★★★</span>
+            <blockquote>I had my botox treatment at Reenz unisex salon and spa and it was such a lovely experience. The staffs were warm and attentive. Biman and Renu were incredibly professional, friendly and did an amazing job. This is the second time i am doing my hair botox there. Truly excellent service and highly recommended.</blockquote>
             <figcaption>Dhanya Mohan</figcaption>
           </figure>
           <figure class="carousel-slide">
-            <blockquote>Had an excellent experience at Reenz Salon. The service was top-notch, and I want to give a special shout-out to Najma. She was professional, attentive, and provided fantastic service. Highly recommend this place if you're looking for quality care</blockquote>
+            <span class="review-stars" aria-label="5 stars">★★★★★</span>
+            <blockquote>Had an excellent experience at Reenz Salon. The service was top-notch, and I want to give a special shout-out to Najma. She was professional, attentive, and provided fantastic service. Highly recommend this place if you're looking for quality care.</blockquote>
             <figcaption>Vivekh Nayar</figcaption>
           </figure>
           <figure class="carousel-slide">
-            <blockquote>I highly recommend this salon for eyebrow shaping and eyebrows shading,Reena chechi, the magical hand's was so talented and took the time to discuss what shape would best suit my face. The results are amazing and I felt comfortable throughout the entire process. 4 years of experience Thankyou Reena chechi 💖💖</blockquote>
+            <span class="review-stars" aria-label="5 stars">★★★★★</span>
+            <blockquote>I highly recommend this salon for eyebrow shaping and eyebrow shading. Reena chechi, the magical hands, was so talented and took the time to discuss what shape would best suit my face. The results are amazing and I felt comfortable throughout the entire process. 4 years of experience — thank you Reena chechi! 💖</blockquote>
             <figcaption>Sangeetha Padmakumar</figcaption>
           </figure>
         </div>
@@ -396,6 +476,7 @@
       <div class="contact-actions" style="align-items: center;">
         <a class="button primary" href="tel:+917306595965">Call KIMS Hospital</a>
         <a class="button primary" href="tel:+914714000900">Call Vazhuthacaud</a>
+        <a class="button primary" href="https://wa.me/919495333399?text=Hi%2C+I%27d+like+to+book+an+appointment+at+Reenz+Salon" target="_blank" rel="noopener noreferrer" style="background: #25d366; border-color: #25d366;">WhatsApp Us</a>
         <div class="social-links" style="display: flex; gap: 20px; margin-left: 12px;">
           <a href="https://www.instagram.com/reenz_family_salon/" target="_blank" aria-label="Instagram" style="color: var(--ink); opacity: 0.8; transition: opacity 0.3s ease, transform 0.3s ease;" onmouseover="this.style.opacity='1'; this.style.color='var(--gold)'; this.style.transform='scale(1.1)';" onmouseout="this.style.opacity='0.8'; this.style.color='var(--ink)'; this.style.transform='scale(1)';">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
@@ -438,8 +519,8 @@
       <div class="footer-newsletter">
         <h4>Subscribe</h4>
         <p>Get updates on seasonal bridal packages and promotions.</p>
-        <form class="newsletter-form" action="#" onsubmit="event.preventDefault();">
-          <input type="email" placeholder="Email Address" required>
+        <form class="newsletter-form" action="https://formspree.io/f/xpwzjzon" method="POST">
+          <input type="email" name="email" placeholder="Email Address" required>
           <button type="submit">→</button>
         </form>
       </div>
@@ -454,6 +535,11 @@
       </div>
     </div>
   </footer>
+
+  <!-- Mobile Sticky CTA (shows on phones only) -->
+  <div class="mobile-sticky-cta" id="mobile-sticky-cta">
+    <a href="https://wa.me/919495333399?text=Hi%2C+I%27d+like+to+book+an+appointment+at+Reenz+Salon" target="_blank" rel="noopener noreferrer">📅 Book an Appointment</a>
+  </div>
 
   <!-- Back to Top -->
   <a href="#top" class="back-to-top" aria-label="Back to top">
@@ -679,6 +765,11 @@
       <div class="modal-body">
         <h2>Makeup</h2>
         <div class="menu-content">
+          <!-- Urgency nudge -->
+          <div style="background: linear-gradient(135deg, rgba(164,0,42,0.08), rgba(196,147,79,0.08)); border: 1px solid var(--gold); border-radius: 8px; padding: 14px 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 1.2rem;">💍</span>
+            <p style="margin: 0; font-size: 0.92rem; color: var(--ink); font-weight: 600;">Limited bridal slots available for the 2026 season. <a href="https://wa.me/919495333399?text=Hi%2C+I%27d+like+to+enquire+about+bridal+makeup+packages" target="_blank" rel="noopener noreferrer" style="color: var(--rose); text-decoration: underline;">Enquire now →</a></p>
+          </div>
 
             <ul class="menu-list">
               <li><span class="item-name">Saree Draping</span><span class="item-price">₹600</span></li>

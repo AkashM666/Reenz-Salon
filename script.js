@@ -89,6 +89,18 @@ revealElements.forEach((el, index) => {
   revealObserver.observe(el);
 });
 
+/* ─── Skeleton Shimmer Loaders ───────────────────────────── */
+// Apply shimmer to all lazy images; remove once loaded
+document.querySelectorAll("img[loading='lazy']").forEach(img => {
+  img.classList.add("img-skeleton");
+  if (img.complete && img.naturalWidth > 0) {
+    img.classList.remove("img-skeleton");
+  } else {
+    img.addEventListener("load", () => img.classList.remove("img-skeleton"), { once: true });
+    img.addEventListener("error", () => img.classList.remove("img-skeleton"), { once: true });
+  }
+});
+
 /* ─── Custom Cursor (pointer devices only) ───────────────── */
 const cursor = document.querySelector(".custom-cursor");
 

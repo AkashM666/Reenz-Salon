@@ -82,6 +82,10 @@ a {
   color: inherit;
 }
 
+address {
+  font-style: normal;
+}
+
 .site-header {
   position: fixed;
   z-index: 20;
@@ -892,10 +896,11 @@ blockquote {
     min-height: 720px;
     padding-top: 118px;
     justify-content: flex-start;
+    /* Switch off fixed attachment on mobile — prevents GPU repaint jank */
     background:
       linear-gradient(90deg, rgba(23, 17, 22, 0.78) 0%, rgba(23, 17, 22, 0.45) 55%, rgba(23, 17, 22, 0.18) 100%),
       linear-gradient(180deg, rgba(23, 17, 22, 0.08), rgba(23, 17, 22, 0.34)),
-      url("assets/reenz-bridal-wide-clean.jpg") 54% center / cover no-repeat fixed;
+      url("assets/reenz-bridal-wide-clean.jpg") 54% center / cover no-repeat scroll;
   }
 
   .image-story {
@@ -1390,7 +1395,117 @@ blockquote {
 
 /* Scroll Animations — single canonical rule (duplicate above removed) */
 
-/* Staggering for lists */
+/* ─── Stats / Trust Bar ─────────────────────────────────── */
+.stats-bar {
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 40px clamp(22px, 5vw, 72px);
+  display: flex;
+  justify-content: center;
+  gap: clamp(32px, 6vw, 80px);
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.stat-number {
+  font-family: var(--display);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ink);
+  /* Gradient shimmer on the number */
+  background: linear-gradient(135deg, var(--gold) 0%, var(--rose) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+/* ─── Testimonial Stars ──────────────────────────────────── */
+.review-stars {
+  color: var(--gold);
+  font-size: 1rem;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* ─── Mobile Sticky CTA ──────────────────────────────────── */
+.mobile-sticky-cta {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 80;
+  padding: 12px 20px;
+  background: var(--ink);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(16px);
+}
+
+.mobile-sticky-cta a {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: var(--rose);
+  color: #fff;
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.mobile-sticky-cta a:active {
+  transform: scale(0.97);
+  background: var(--rose-dark);
+}
+
+@media (max-width: 768px) {
+  .mobile-sticky-cta {
+    display: block;
+  }
+  /* Prevent content from hiding behind sticky bar */
+  body {
+    padding-bottom: 74px;
+  }
+}
+
+/* ─── Skeleton / Image Shimmer Loader ───────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position:  600px 0; }
+}
+
+.img-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--soft) 25%,
+    var(--line) 50%,
+    var(--soft) 75%
+  );
+  background-size: 1200px 100%;
+  animation: shimmer 1.6s infinite linear;
+}
+
+/* ─── Staggering for lists ───────────────────────────────── */
 .menu-card:nth-child(2) { transition-delay: 0.1s; }
 .menu-card:nth-child(3) { transition-delay: 0.2s; }
 .menu-card:nth-child(4) { transition-delay: 0.3s; }
