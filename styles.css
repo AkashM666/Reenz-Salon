@@ -1449,42 +1449,38 @@ blockquote {
 .mobile-sticky-cta {
   display: none;
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 80;
-  padding: 12px 20px;
-  background: var(--ink);
-  border-top: 1px solid rgba(255,255,255,0.08);
-  backdrop-filter: blur(16px);
+  pointer-events: none;
 }
 
 .mobile-sticky-cta a {
-  display: block;
-  width: 100%;
-  text-align: center;
+  pointer-events: all;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   background: var(--rose);
   color: #fff;
   font-weight: 800;
-  font-size: 1rem;
-  padding: 14px;
+  font-size: 0.95rem;
+  padding: 14px 28px;
   border-radius: 999px;
   text-decoration: none;
-  transition: background 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+  box-shadow: 0 8px 28px rgba(164, 0, 42, 0.45);
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
 }
 
 .mobile-sticky-cta a:active {
-  transform: scale(0.97);
-  background: var(--rose-dark);
+  transform: scale(0.95);
+  box-shadow: 0 4px 16px rgba(164, 0, 42, 0.35);
 }
 
 @media (max-width: 768px) {
   .mobile-sticky-cta {
     display: block;
-  }
-  /* Prevent content from hiding behind sticky bar */
-  body {
-    padding-bottom: 74px;
   }
 }
 

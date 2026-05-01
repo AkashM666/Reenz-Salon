@@ -57,7 +57,7 @@ window.addEventListener("scroll", () => {
 
 /* ─── Scroll Reveal Animations ───────────────────────────── */
 const revealElements = document.querySelectorAll(
-  ".menu-card, .image-story figure, .story-media, .carousel-wrapper, .location-card, .section-heading, .intro-copy, .brows-text"
+  ".menu-card, .image-story figure, .story-media, .carousel-wrapper, .location-card, .section-heading, .intro-copy, .brows-text, .stat-item"
 );
 
 const revealOptions = {
