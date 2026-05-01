@@ -392,7 +392,7 @@ body[data-theme="dark"] .button.secondary:hover {
 }
 
 .section-pad {
-  padding: clamp(72px, 10vw, 120px) clamp(22px, 5vw, 72px);
+  padding: clamp(50px, 7vw, 80px) clamp(22px, 5vw, 72px);
 }
 
 .intro {
@@ -528,7 +528,7 @@ body[data-theme="dark"] .button.secondary:hover {
   grid-template-columns: minmax(0, 1fr) minmax(280px, 520px);
   gap: clamp(28px, 6vw, 80px);
   align-items: center;
-  padding: clamp(70px, 10vw, 130px) clamp(22px, 5vw, 72px);
+  padding: clamp(50px, 7vw, 90px) clamp(22px, 5vw, 72px);
   color: #fff;
   background:
     linear-gradient(125deg, rgba(23, 17, 22, 0.96), rgba(115, 0, 34, 0.9)),
@@ -1393,7 +1393,17 @@ blockquote {
   color: var(--rose);
 }
 
-/* Scroll Animations — single canonical rule (duplicate above removed) */
+/* Scroll Animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* ─── Stats / Trust Bar ─────────────────────────────────── */
 .stats-bar {
@@ -1445,44 +1455,7 @@ blockquote {
   display: block;
 }
 
-/* ─── Mobile Sticky CTA ──────────────────────────────────── */
-.mobile-sticky-cta {
-  display: none;
-  position: fixed;
-  bottom: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 80;
-  pointer-events: none;
-}
 
-.mobile-sticky-cta a {
-  pointer-events: all;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--rose);
-  color: #fff;
-  font-weight: 800;
-  font-size: 0.95rem;
-  padding: 14px 28px;
-  border-radius: 999px;
-  text-decoration: none;
-  white-space: nowrap;
-  box-shadow: 0 8px 28px rgba(164, 0, 42, 0.45);
-  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
-}
-
-.mobile-sticky-cta a:active {
-  transform: scale(0.95);
-  box-shadow: 0 4px 16px rgba(164, 0, 42, 0.35);
-}
-
-@media (max-width: 768px) {
-  .mobile-sticky-cta {
-    display: block;
-  }
-}
 
 /* ─── Skeleton / Image Shimmer Loader ───────────────────── */
 @keyframes shimmer {
