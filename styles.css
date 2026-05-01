@@ -100,6 +100,9 @@ a {
   height: 54px;
   object-fit: contain;
   object-position: center;
+  image-rendering: high-quality;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .logo-dark {
@@ -756,7 +759,7 @@ blockquote {
   gap: 50px;
   margin-bottom: 60px;
 }
-.footer-brand img { width: 160px; margin-bottom: 20px; display: block; }
+.footer-brand img { width: 160px; margin-bottom: 20px; display: block; image-rendering: high-quality; transform: translateZ(0); backface-visibility: hidden; }
 .footer-brand p { color: var(--footer-text); max-width: 320px; line-height: 1.6; }
 .footer-links { display: flex; flex-direction: column; gap: 14px; }
 .footer-links h4, .footer-newsletter h4 {
