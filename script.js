@@ -46,12 +46,19 @@ if (toggle && header) {
 /* ─── Scroll: Header shadow + Back-to-top ───────────────── */
 const backToTop = document.querySelector(".back-to-top");
 
+let isScrolling = false;
 window.addEventListener("scroll", () => {
-  const scrolled = window.scrollY > 60;
-  header?.classList.toggle("is-scrolled", scrolled);
+  if (!isScrolling) {
+    window.requestAnimationFrame(() => {
+      const scrolled = window.scrollY > 60;
+      header?.classList.toggle("is-scrolled", scrolled);
 
-  if (backToTop) {
-    backToTop.classList.toggle("is-visible", window.scrollY > 500);
+      if (backToTop) {
+        backToTop.classList.toggle("is-visible", window.scrollY > 500);
+      }
+      isScrolling = false;
+    });
+    isScrolling = true;
   }
 }, { passive: true });
 
@@ -105,9 +112,21 @@ document.querySelectorAll("img[loading='lazy']").forEach(img => {
 const cursor = document.querySelector(".custom-cursor");
 
 if (cursor && window.matchMedia("(pointer: fine)").matches) {
+  let cursorX = 0;
+  let cursorY = 0;
+  let isCursorUpdating = false;
+
   document.addEventListener("mousemove", (e) => {
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
+    cursorX = e.clientX;
+    cursorY = e.clientY;
+    if (!isCursorUpdating) {
+      window.requestAnimationFrame(() => {
+        cursor.style.left = cursorX + "px";
+        cursor.style.top = cursorY + "px";
+        isCursorUpdating = false;
+      });
+      isCursorUpdating = true;
+    }
   });
 
   const hoverElements = document.querySelectorAll(
